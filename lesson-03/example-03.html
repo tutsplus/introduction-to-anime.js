@@ -1,0 +1,50 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Introduction to Anime.js - Lesson 03, Example 03</title>
+    <meta name="description" content="A Tuts+ short course">
+    <meta name="author" content="Adi Purdila">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        .container {
+            width: 50%;
+            margin: 10rem auto;
+        }
+
+        
+    </style>
+
+    <!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="container">
+        <svg width="142px" height="56px" viewBox="0 0 142 56" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+            <desc>Created with Sketch.</desc>
+            <defs></defs>
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="iPhone-7" fill="#343434">
+                    <polygon id="triangle" points="71 56 0 0 142 0"></polygon>
+                </g>
+            </g>
+        </svg>
+    </div>
+
+    <script src="../bower_components/animejs/anime.min.js"></script>
+    <script>
+        anime({
+            targets: '#triangle',
+            points: '71 0 142 56 0 56',
+            delay: 1000
+        });
+    </script>
+</body>
+</html>

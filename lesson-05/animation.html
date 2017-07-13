@@ -1,0 +1,257 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Introduction to Anime.js - Lesson 05, Animation</title>
+    <meta name="description" content="A Tuts+ short course">
+    <meta name="author" content="Adi Purdila">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+
+        body {
+            padding-top: 2rem;
+        }
+
+        .circuit-container {
+            width: 981px;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .car {
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            font-size: 75%;
+            font-weight: bold;
+            text-align: center;
+            line-height: 30px;
+            color: white;
+            top: -15px;
+            left: -15px;
+            border-radius: 5px;
+        }
+
+        #car-1,
+        #car-1-stat .thumb {
+            background-color: #455b70;
+        }
+
+        #car-2,
+        #car-2-stat .thumb {
+            background-color: #da4132;
+        }
+
+        #car-3,
+        #car-3-stat .thumb {
+            background-color: #17a05d;
+        }
+
+        .stats {
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            margin: 3rem 0;
+            padding: 3rem 0;
+            overflow: hidden;
+        }
+
+        .stat {
+            width: 30%;
+            float: left;
+            margin: 0 1.5%;
+            position: relative;
+            padding: 2rem 1rem;
+        }
+
+        .stat p:last-child {
+            margin-bottom: 0;
+        }
+
+        .thumb {
+            margin: 0 auto;
+            width: 3rem;
+            height: 3rem;
+            line-height: 3rem;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .winner {
+            border-radius: 5px;
+            position: relative;
+            background-color: #1e1e1e;
+            color: #fff;
+            -webkit-transition: all 0.3s ease-in-out;
+            -moz-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+
+            .winner:after {
+                content: "WINNER";
+                position: absolute;
+                border-radius: 5px;
+                letter-spacing: 1px;
+                top: -1rem;
+                left: 50%;
+                height: 1rem;
+                font-weight: bold;
+                transform: translateX(-50%);
+                background-color: #ed6500;
+                color: white;
+                padding: 0.5rem 2rem;
+            }
+    </style>
+
+    <!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="legend">
+        <h1>Formula 1 Grand Prix Du Canada 2017</h1>
+        <h3>Circuit Gilles-Villeneuve, Montreal</h3>
+
+        <div class="stats">
+            <div class="stat" id="car-1-stat">
+                <div class="thumb">LH</div>
+                <h3>Lewis Hamilton</h3>
+                <p>Team: Mercedes</p>
+            </div> <!-- end .stat -->
+
+            <div class="stat" id="car-2-stat">
+                <div class="thumb">VB</div>
+                <h3>Valtteri Bottas</h3>
+                <p>Team: Mercedes</p>
+            </div> <!-- end .stat -->
+
+            <div class="stat" id="car-3-stat">
+                <div class="thumb">DR</div>
+                <h3>Daniel Ricciardo</h3>
+                <p>Team: Red Bull Racing Tag Heuer</p>
+            </div> <!-- end .stat -->
+        </div> <!-- end .stats -->
+    </div> <!-- end .legend -->
+
+    <div class="circuit-container">
+        <div class="cars">
+            <div class="car" id="car-1">LH</div>
+            <div class="car" id="car-2">VB</div>
+            <div class="car" id="car-3">DR</div>
+        </div> <!-- end .cars -->
+
+        <svg width="971px" height="262px" viewBox="0 0 971 262" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+            <desc>Created with Sketch.</desc>
+            <defs></defs>
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="Desktop-Copy">
+                    <g id="circuit">
+                        <path d="M184.156187,241.177781 C170.976184,241.177781 157.727177,241.866381 144.478169,240.971202 C134.265392,240.282602 124.12162,238.974262 114.253869,236.357582 C98.5206724,232.225983 83.2015069,226.166304 67.6753258,220.864084 C61.3958481,218.798285 55.2543808,215.630725 48.9749031,214.253525 C46.2836984,213.633785 42.9714464,213.633785 40.6252679,215.010985 C36.9679897,217.283365 33.5177272,221.139524 30.964533,224.995684 C28.2733283,229.127283 27.652281,235.324682 24.7540605,238.767682 C22.683903,241.384361 18.6815986,243.243581 15.7143728,243.243581 C12.8161523,243.174721 9.22787936,240.971202 6.81269562,238.767682 C4.39751189,236.495302 2.3273544,233.121163 1.2232704,229.815883 C0.188191659,226.717183 -0.294845088,222.929884 0.188191659,219.624604 C0.947249405,214.322385 2.67238065,209.020166 4.81154338,204.131107 C10.7459948,190.841128 20.199714,187.122689 27.3072548,174.590171 C29.584428,170.251991 32.6896642,166.602412 35.8639057,163.021692 C43.0404517,155.033933 50.2169976,146.977315 58.1526013,139.953596 C75.4039137,124.804398 93.2072681,109.9995 111.493659,96.9161016 C113.149785,95.5389018 115.909995,95.5389018 117.842142,96.2275017 C123.707588,98.6376013 128.882982,104.76614 134.817434,106.5565 C138.612722,107.72712 143.44309,107.10738 147.238379,105.31702 C163.937649,97.2604015 180.705925,87.9643028 196.02509,77.2910043 C205.133783,70.8870252 211.758287,60.6957466 220.521954,53.8097476 C225.628342,49.7470081 231.562794,46.6483086 237.773266,44.5825089 C244.949812,42.1035492 252.954421,39.7623095 260.544998,40.4509094 C279.176416,42.0346892 297.807833,47.5434884 316.439251,51.4685079 C324.995902,53.3277276 341.971193,56.8395872 350.458839,57.803627 C353.564075,58.147927 357.014337,57.1150271 359.705542,55.6001073 C362.327742,53.8786076 365.018946,51.1242079 366.330046,48.3009483 C367.641146,45.2711088 367.503135,41.2772293 367.503135,37.6965098 C367.503135,34.2535103 368.331198,30.3973508 369.228267,27.1609313 C370.746382,21.720992 373.920624,15.7990329 377.715912,11.7362934 C381.304185,7.94899396 386.479579,5.12573436 391.516962,3.61081457 C399.452566,1.2007149 399.452566,0.374395017 407.733196,0.0300950648 C414.564716,-0.176484906 418.56702,0.718694969 425.467545,1.54501485 C450.654461,4.91915438 476.048393,8.08671394 501.028293,12.4937533 C512.897196,14.628413 524.421073,18.4157125 536.013955,21.5144121 C545.536679,23.9245117 555.197414,25.8525915 564.513123,29.226731 C579.694278,34.5978103 594.806428,40.6574894 609.366535,47.8189284 C625.720779,55.7378273 641.246961,65.5848059 657.187173,74.3988847 C662.845604,77.6353043 669.056076,80.1831239 674.36948,83.8327034 C676.646654,85.3476232 679.613879,87.2757029 680.441942,89.8235226 C681.477021,92.4402022 679.8899,96.0209217 679.75189,99.1196213 C679.544874,103.113501 678.854822,107.2451 679.406864,111.0324 C680.096916,114.475399 681.477021,118.262699 683.547179,120.879378 C686.859431,125.148698 691.344772,128.867137 695.830113,131.896977 C707.008963,139.609296 718.53284,146.839595 730.470748,153.036994 C753.10447,164.743192 776.290234,175.623071 799.683014,185.607769 C815.002179,192.080608 830.804381,197.658268 846.675589,202.547327 C854.335171,204.819707 862.270775,205.852606 870.206379,207.092086 C880.557166,208.607006 891.114969,210.190786 901.603767,210.741666 C914.162723,211.361406 926.721678,210.741666 939.211628,210.397366 C947.147232,210.190786 955.082836,209.157886 963.018439,209.157886 C965.226607,209.157886 968.193833,208.813586 969.435928,210.328506 C970.885038,212.118866 970.885038,216.043885 970.954043,218.798285 C971.092054,220.519784 970.954043,222.792164 970.056975,223.962784 C968.400849,226.166304 965.778649,228.300963 963.29446,228.920703 C957.360009,230.366763 950.80451,230.711063 944.663043,230.297903 C940.591733,230.091323 936.796445,227.543503 932.65613,227.061483 C925.341573,225.959724 917.820001,225.271124 910.57445,225.684284 C905.951098,225.822004 901.465757,227.543503 896.980416,228.714123 C884.145439,232.225983 871.517478,236.839602 858.613497,239.800582 C833.978623,245.447101 807.963644,247.512901 783.121754,252.05766 C766.836515,254.94978 750.482271,257.566459 734.059021,259.769979 C726.330433,260.802879 718.39483,261.698059 710.597236,261.835779 C680.786969,262.524379 650.217643,260.802879 620.33837,261.147179 C566.928307,261.766919 513.104212,261.698059 459.625144,261.835779 C434.714248,262.042359 408.906285,258.186199 384.340416,256.533559 C382.132248,256.326979 380.269107,253.91688 379.234028,251.85108 C377.439891,248.8901 377.508897,244.276481 375.783765,241.522081 C374.610676,239.662862 372.333503,238.079082 370.263345,237.734782 C365.087952,236.839602 359.360516,237.390482 353.840096,237.528202 C338.175904,237.665922 322.649723,237.941362 307.054537,238.423382 C290.217256,238.905402 273.517985,240.144882 256.74971,240.420322 C232.597872,240.971202 208.37703,241.108921 184.156187,241.177781 Z" id="path3235" stroke="#000000"></path>
+                        <g id="finish" transform="translate(159.000000, 223.000000)" fill-rule="nonzero">
+                            <rect id="rect3279" stroke="#FFFFFF" stroke-width="2.41509434" fill="#000000" x="0.345013477" y="0" width="13.8005391" height="35.3201676"></rect>
+                            <rect id="rect3281" fill="#FFFFFF" x="1.93206857" y="1.72461752" width="3.58814002" height="3.58720431"></rect>
+                            <rect id="rect3283" fill="#FFFFFF" x="5.52021563" y="5.17385257" width="3.58814002" height="3.58720431"></rect>
+                            <rect id="rect3285" fill="#FFFFFF" x="9.1083627" y="1.72461752" width="3.58814002" height="3.58720431"></rect>
+                            <rect id="rect3287" fill="#FFFFFF" x="1.93206857" y="8.83003483" width="3.58814002" height="3.58720431"></rect>
+                            <rect id="rect3289" fill="#FFFFFF" x="5.52021563" y="12.4172462" width="3.58814002" height="3.58720431"></rect>
+                            <rect id="rect3291" fill="#FFFFFF" x="9.1083627" y="8.83003483" width="3.58814002" height="3.58720431"></rect>
+                            <rect id="rect3293" fill="#FFFFFF" x="1.93206857" y="16.0044575" width="3.58814002" height="3.58720431"></rect>
+                            <rect id="rect3295" fill="#FFFFFF" x="5.52021563" y="19.6606398" width="3.58814002" height="3.58720431"></rect>
+                            <rect id="rect3297" fill="#FFFFFF" x="9.1083627" y="16.0044575" width="3.58814002" height="3.58720431"></rect>
+                            <rect id="rect3299" fill="#FFFFFF" x="1.93206857" y="23.1098748" width="3.58814002" height="3.58720431"></rect>
+                            <rect id="rect3301" fill="#FFFFFF" x="5.52021563" y="26.7660571" width="3.58814002" height="3.58720431"></rect>
+                            <rect id="rect3303" fill="#FFFFFF" x="9.1083627" y="23.1098748" width="3.58814002" height="3.58720431"></rect>
+                            <rect id="rect3305" fill="#FFFFFF" x="1.93206857" y="30.3532684" width="3.58814002" height="3.58720431"></rect>
+                            <rect id="rect3307" fill="#FFFFFF" x="9.1083627" y="30.3532684" width="3.58814002" height="3.58720431"></rect>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </svg>
+    </div> <!-- end .circuit-container -->
+
+    <script src="../bower_components/animejs/anime.min.js"></script>
+    <script>
+        var path = anime.path('#circuit path'),
+            results = ['10000', '12000', '13000'],
+            raceTimeline = anime.timeline();
+
+        raceTimeline
+            .add({
+                targets: '#car-1-stat',
+                opacity: [0, 1],
+                translateY: [-1000, 0],
+                duration: 1000
+            })
+            .add({
+                targets: '#car-2-stat',
+                opacity: [0, 1],
+                translateY: [-1000, 0],
+                duration: 1000
+            })
+            .add({
+                targets: '#car-3-stat',
+                opacity: [0, 1],
+                translateY: [-1000, 0],
+                duration: 1000
+            })
+            .add({
+                targets: '.circuit-container',
+                opacity: [0, 1],
+                delay: 1000
+            })
+            .add({
+                targets: '.car',
+                translateX: path('x'),
+                translateY: path('y'),
+                rotate: path('angle'),
+                easing: 'linear',
+                delay: 1000,
+                duration: function(el, i) {
+                    return results[i];
+                },
+                complete: function() {
+                    var winnerTimeline = anime.timeline();
+
+                    winnerTimeline
+                        .add({
+                            targets: ".circuit-container",
+                            opacity: [1, 0],
+                            duration: 1000,
+                            delay: 1000
+                        })
+                        .add({
+                            targets: "#car-3-stat",
+                            translateX: '+=1000',
+                            duration: 1000,
+                            delay: 1000
+                        })
+                        .add({
+                            targets: "#car-2-stat",
+                            translateX: '+=1000',
+                            duration: 1000
+                        })
+                        .add({
+                            targets: "#car-1-stat",
+                            translateX: '-50%',
+                            left: '50%',
+                            duration: 2000,
+                            complete: function(){
+                                document.getElementById('car-1-stat').classList.add('winner');
+                            }
+                        });
+                }
+            });
+    </script>
+</body>
+</html>

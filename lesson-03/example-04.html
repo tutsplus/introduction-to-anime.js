@@ -1,0 +1,58 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Introduction to Anime.js - Lesson 03, Example 04</title>
+    <meta name="description" content="A Tuts+ short course">
+    <meta name="author" content="Adi Purdila">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        .container {
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        .circle {
+            width: 5rem;
+            height: 5rem;
+            background-color: #059de1;
+            border-radius: 50%;
+            margin: 1rem;
+            display: inline-block;
+        }
+    </style>
+
+    <!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="container">
+        <div class="circle" id="first"></div>
+        <div class="circle" id="second"></div>
+        <div class="circle" id="third"></div>
+    </div>
+
+    <script src="../bower_components/animejs/anime.min.js"></script>
+    <script>
+        anime({
+            targets: '.circle',
+            // CSS properties
+            backgroundColor: '#333333',
+            // Transforms
+            translateY: function(el, i, l) {
+                return i * 100;
+            },
+            translateX: '+=100',
+            delay: function() {
+                return anime.random(0, 2000)
+            }
+        });
+    </script>
+</body>
+</html>

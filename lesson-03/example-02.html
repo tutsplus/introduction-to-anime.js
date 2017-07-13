@@ -1,0 +1,62 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Introduction to Anime.js - Lesson 03, Example 02</title>
+    <meta name="description" content="A Tuts+ short course">
+    <meta name="author" content="Adi Purdila">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        input {
+            display: inline-block;
+            border: none;
+        }
+
+        p {
+            display: inline-block;
+        }
+    </style>
+
+    <!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <h2>Visitors</h2>
+
+    <p><strong>This week:</strong></p>
+    <input type="text" value="0" id="weekly-count">
+
+    <p><strong>This month:</strong></p>
+    <input type="text" value="0" id="monthly-count">
+
+    <p><strong>This year:</strong></p>
+    <input type="text" value="0" id="yearly-count">
+
+    <script src="../bower_components/animejs/anime.min.js"></script>
+    <script>
+        anime({
+            targets: '#weekly-count',
+            value: 674,
+            round: 1
+        });
+
+        anime({
+            targets: '#monthly-count',
+            value: 674*4,
+            round: 1
+        });
+
+        anime({
+            targets: '#yearly-count',
+            value: 674*4*12,
+            round: 1
+        });
+    </script>
+</body>
+</html>
